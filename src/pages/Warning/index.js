@@ -3,11 +3,10 @@ import {
   SafeAreaView,
 } from 'react-native';
 
-
 import styles from './styles';
 
 import { Card, Text, Button, Divider } from 'react-native-elements';
-export default function Home() {
+export default function Home({navigation}) {
 
   return (
     <SafeAreaView style={styles.container}>
@@ -18,7 +17,13 @@ export default function Home() {
         <Text h4 h4Style={styles.h4Style}> Não nos responsabilizamos por qualquer transação feita
          à partir da interação com os logistas cadastrados. 
          </Text>
-         <Button  containerStyle={styles.button} title="concordar"/>
+         <Button 
+          containerStyle={styles.button} 
+          title="concordar"
+          onPress={()=>{
+            navigation.navigate('Intro');
+          }}
+          />
       </Card>
     </SafeAreaView>
   );
