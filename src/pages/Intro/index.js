@@ -12,7 +12,7 @@ import styles from './styles';
 export default function Intro({ navigation }) {
   useEffect(() => {
     setInterval(()=>{
-      navigation.navigate('Home')
+      navigation.navigate('Warning');
     }, 5100);
   }, []);
 

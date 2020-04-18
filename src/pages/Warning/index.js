@@ -50,7 +50,7 @@ export default function Home({navigation}) {
           <TouchableOpacity
             style={styles.button}
             onPress={()=>{
-              navigation.navigate('Intro');
+              navigation.navigate('Register');
             }}
           >
             <Text style={styles.textButton}>Continuar</Text>
@@ -59,7 +59,7 @@ export default function Home({navigation}) {
           <View style={[styles.button, {backgroundColor: "#00968899"}]}>
             <Text style={styles.textButton}>Continuar</Text>
           </View>
-        }      
+        }
       </View>
     </SafeAreaView>
   );

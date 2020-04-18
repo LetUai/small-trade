@@ -4,7 +4,9 @@ import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/
 
 import Intro from './pages/Intro';
 import Home from './pages/Home';
-import Warning from './pages/Warning'
+import Warning from './pages/Warning';
+import Register from './pages/Register';
+import Login from './pages/Login';
 
 const Stack = createStackNavigator();
 
@@ -15,8 +17,10 @@ function App() {
         headerShown: false,
         cardStyleInterpolator: CardStyleInterpolators.forScaleFromCenterAndroid,
       }}>
-        <Stack.Screen name="Warning" component={Warning}/>
         <Stack.Screen name="Intro" component={Intro} />
+        <Stack.Screen name="Warning" component={Warning}/>
+        <Stack.Screen name="Register" component={Register}/>
+        <Stack.Screen name="Login" component={Login}/>
         <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>
