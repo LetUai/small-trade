@@ -6,28 +6,22 @@ export default StyleSheet.create({
     padding: 15,
     justifyContent: "space-between"
   },
-  header: {
-    height: 100,
-    justifyContent: "center",
-    marginTop: 20,
-  },
   title: {
     fontSize: 26,
     fontWeight: "bold",
-  },
-  content: {
-
+    marginTop: 50,
   },
   label: {
     fontSize: 16,
     fontWeight: "bold",
-    marginTop: 15,
+    marginTop: 18,
   },
   input: {
     padding: 5,
-    borderWidth: 1,
+    borderWidth: 0.6,
     borderRadius: 5,
     marginTop: 4,
+    height: 45,
   },
   link: {
     textAlign: "center",
@@ -36,18 +30,19 @@ export default StyleSheet.create({
     textDecorationLine: "underline"
   },
   footer: {
-    bottom: 0,
+    bottom: 30,
   },
   button: {
     backgroundColor: "#009688",
     borderRadius: 3,
     justifyContent: "center",
     alignItems: "center",
+    height: 50,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
   },
   textButton: {
     color: "#FFF",
     fontWeight: "bold",
-    marginVertical: 10,
-    marginHorizontal: 15,
   }
 })

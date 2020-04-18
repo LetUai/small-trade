@@ -3,26 +3,25 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     padding: 15,
-  },
-  header: {
-    
   },
   title: {
     fontSize: 26,
     fontWeight: "bold",
+    marginTop: 30,
   },
   label: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "bold",
     marginTop: 15,
   },
   input: {
     padding: 5,
-    borderWidth: 1,
+    borderWidth: 0.6,
     borderRadius: 5,
     marginTop: 4,
+    height: 45,
   },
   link: {
     textAlign: "center",
@@ -30,16 +29,20 @@ export default StyleSheet.create({
     color: "#6558F5",
     textDecorationLine: "underline"
   },
+  footer: {
+    bottom: 30,
+  },
   button: {
     backgroundColor: "#009688",
     borderRadius: 3,
     justifyContent: "center",
     alignItems: "center",
+    height: 50,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
   },
   textButton: {
     color: "#FFF",
     fontWeight: "bold",
-    marginVertical: 10,
-    marginHorizontal: 15,
   }
 })

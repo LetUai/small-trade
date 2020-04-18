@@ -15,12 +15,24 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{
         headerShown: false,
-        cardStyleInterpolator: CardStyleInterpolators.forScaleFromCenterAndroid,
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}>
-        <Stack.Screen name="Intro" component={Intro} />
-        <Stack.Screen name="Warning" component={Warning}/>
+        
+        <Stack.Screen
+          name="Warning"
+          component={Warning}
+          options={{
+            cardStyleInterpolator: CardStyleInterpolators.forScaleFromCenterAndroid,
+          }}
+        />
         <Stack.Screen name="Register" component={Register}/>
-        <Stack.Screen name="Login" component={Login}/>
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{
+            headerShown: true,
+          }}
+        />
         <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>

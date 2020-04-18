@@ -29,26 +29,43 @@ export default function Register({ navigation }) {
         <Text style={styles.title}>Crie sua conta</Text>
       </View>
 
-      <View style={styles.content}>
+      <View>
         <Text style={styles.label}>Nome:</Text>
-        <TextInput style={styles.input}></TextInput>
+        <TextInput
+          style={styles.input}
+          autoCapitalize="words"
+          returnKeyType="next"
+        />
 
         <Text style={styles.label}>E-mail:</Text>
-        <TextInput style={styles.input}></TextInput>
+        <TextInput
+          style={styles.input}
+          keyboardType="email-address"
+          autoCapitalize="none"
+          returnKeyType="next"
+        />
 
         <Text style={styles.label}>Senha:</Text>
-        <TextInput style={styles.input}></TextInput>
+        <TextInput
+          style={styles.input}
+          secureTextEntry={true}
+          returnKeyType="next"
+        />
 
         <Text style={styles.label}>Confirme sua senha:</Text>
-        <TextInput style={styles.input}></TextInput>
+        <TextInput
+          style={styles.input}
+          secureTextEntry={true}
+          returnKeyType="done"
+        />
+      </View>
 
+      <View style={styles.footer}>
         <Text
           style={styles.link}
           onPress={() => { navigation.navigate('Login') }}
         >Já tenho uma conta</Text>
-      </View>
 
-      <View style={styles.footer}>
         <TouchableOpacity
           style={styles.button}
           onPress={() => { navigation.navigate('Home') }}
