@@ -11,7 +11,7 @@ export default StyleSheet.create({
    backgroundColor: "#DEE2F9",
    borderRadius: 5
   },
-  h1Style: {
+  title: {
     textAlign: "center",
     color: "tomato"
   },
