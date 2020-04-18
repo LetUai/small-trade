@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   View,
@@ -6,10 +6,22 @@ import {
   TouchableOpacity,
   CheckBox,
   ScrollView,
+  BackHandler
 } from 'react-native';
 
 import styles from './styles';
-export default function Home({navigation}) {
+export default function Home({ navigation }) {
+
+  useEffect(() => {
+    const backAction = () => {
+      BackHandler.exitApp()
+    };
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+    return () => backHandler.remove();
+  }, []);
 
   const [selected, setSelected] = useState(false);
   return (
@@ -20,8 +32,8 @@ export default function Home({navigation}) {
         <Text> Não nos responsabilizamos por qualquer transação feita à partir da interação com os logistas cadastrados.
         </Text>
 
-        { /* Texto teste... */ }
-        <Text style={styles.textCard}> 
+        { /* Texto teste... */}
+        <Text style={styles.textCard}>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque cumque ab earum exercitationem quia necessitatibus nihil illo, hic voluptatum enim autem doloribus nesciunt omnis, architecto quas itaque dignissimos laborum vero?
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero veritatis necessitatibus et sequi deserunt dolorum reprehenderit in dolorem molestiae placeat velit quisquam facere, eum voluptates. Alias itaque cum rerum. Distinctio.
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident esse blanditiis consectetur a eius libero amet quibusdam cupiditate maiores quia incidunt adipisci mollitia dolores, facilis laboriosam consequatur dolorum quam pariatur?
@@ -39,24 +51,24 @@ export default function Home({navigation}) {
           />
           <Text
             style={styles.checkBoxText}
-            onPress={()=>{
+            onPress={() => {
               setSelected(!selected);
             }}
           >
             Li e aceito todos os termos</Text>
         </View>
-        { selected
+        {selected
           ?
           <TouchableOpacity
             style={styles.button}
-            onPress={()=>{
+            onPress={() => {
               navigation.navigate('Register');
             }}
           >
             <Text style={styles.textButton}>Continuar</Text>
           </TouchableOpacity>
           :
-          <View style={[styles.button, {backgroundColor: "#00968899"}]}>
+          <View style={[styles.button, { backgroundColor: "#00968899" }]}>
             <Text style={styles.textButton}>Continuar</Text>
           </View>
         }
