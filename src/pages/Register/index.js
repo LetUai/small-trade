@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   SafeAreaView,
   View,
   Text,
   TextInput,
   TouchableOpacity,
+  BackHandler
 } from 'react-native';
 
 import styles from './styles';
 
 export default function Register({ navigation }) {
+
+  useEffect(() => {
+    const backAction = () => {
+      BackHandler.exitApp()
+    };
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+    return () => backHandler.remove();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -32,14 +44,14 @@ export default function Register({ navigation }) {
 
         <Text
           style={styles.link}
-          onPress={() => {navigation.navigate('Login')}}
+          onPress={() => { navigation.navigate('Login') }}
         >Já tenho uma conta</Text>
       </View>
 
       <View style={styles.footer}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => {navigation.navigate('Home')}}
+          onPress={() => { navigation.navigate('Home') }}
         >
           <Text style={styles.textButton}>Criar conta</Text>
         </TouchableOpacity>
