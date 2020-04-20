@@ -4,7 +4,7 @@ import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import Icon from '@expo/vector-icons/FontAwesome5'
+import Icon from '@expo/vector-icons/Feather';
 
 import Intro from './pages/Intro';
 import Home from './pages/Home';
@@ -12,6 +12,7 @@ import Warning from './pages/Warning';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
+import Details from './pages/Details';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -42,6 +43,16 @@ export default function Routes() {
           }}
         />
         <Stack.Screen name="Home" component={Tabs} />
+        <Stack.Screen
+          name="Details"
+          component={Details}
+          options={{
+            title: "Detalhes",
+            headerShown: true,
+            gestureEnabled: true,
+            gestureDirection: 'horizontal',
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -52,22 +63,21 @@ function Tabs() {
     <Tab.Navigator
       tabBarOptions={{
         activeTintColor: "#009688",
-        inactiveTintColor: "gray"
+        inactiveTintColor: "gray",
+        showLabel: false
       }}
     >
       <Tab.Screen
         name="Feed"
         component={Home}
         options={{
-          tabBarLabel: "Home",
           tabBarIcon: ({color, size}) => <Icon name="home" color={color} size={size} />,
         }}
       />
 
-      <Tab.Screen name="ProfileDrawer" component={Drawers}
+      <Tab.Screen name="Profile" component={Drawers}
       options={{
-        tabBarLabel: "Eu",
-        tabBarIcon: ({color, size}) =>  <Icon name="user-alt" color={color} size={size} />,
+        tabBarIcon: ({color, size}) =>  <Icon name="user" color={color} size={size} />,
       }}/>
     </Tab.Navigator>
   )
@@ -83,11 +93,11 @@ function Drawers() {
       }}
     >
       <Drawer.Screen
-        name="Profile"
+        name="ProfileDrawer"
         component={Profile}
         options={{
-          drawerLabel: "Eu",
-          drawerIcon: ({color}) =>  <Icon name="user-alt" color={color} size={18} />,
+          drawerLabel: "Perfil",
+          drawerIcon: ({color, size}) =>  <Icon name="user" color={color} size={size} />,
         }}
       />
     </Drawer.Navigator>
