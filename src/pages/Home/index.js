@@ -16,6 +16,8 @@ import api from '../../services/api';
 export default function Home({ navigation }) {
   const [publications, setPublications] = useState([]);
 
+  const [search, setSearch] = useState('');
+
   useEffect(() => {
     const backAction = () => {
       BackHandler.exitApp()
@@ -43,7 +45,10 @@ export default function Home({ navigation }) {
         <TextInput
           style={styles.search}
           placeholder="Pesquisar..."
+          autoCapitalize="words"
           autoCorrect={true}
+          value={search}
+          onChangeText={setSearch}
         />
       </View>
       
