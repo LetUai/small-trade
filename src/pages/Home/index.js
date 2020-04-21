@@ -60,7 +60,6 @@ export default function Home({ navigation }) {
       <FlatList
         // condicional pra sempre ter componentes disponível pra aplicar o Shimmer Effect mesmo enquanto a requisição ainda está sendo feita:
         data={loading ? publications : [{_id: "aa"}, {_id: "bb"}, {_id: "ab"}, {_id: "ba"}]}
-        style={styles.list}
         keyExtractor={publication => String(publication._id)}
         showsVerticalScrollIndicator={false}
         renderItem={({ item: publication }) => (
