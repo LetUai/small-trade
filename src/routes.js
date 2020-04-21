@@ -22,11 +22,13 @@ const Drawer = createDrawerNavigator();
 export default function Routes() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{
+      <Stack.Navigator 
+      initialRouteName="Register" // prop for development env
+      screenOptions={{
         headerShown: false,
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}>
-        
+        <Stack.Screen name="Intro" component={Intro}/>
         <Stack.Screen
           name="Warning"
           component={Warning}
@@ -82,11 +84,14 @@ function Tabs() {
     </Tab.Navigator>
   )
 }
-
 function Drawers() {
   return(
     <Drawer.Navigator
       drawerPosition="right"
+      drawerType="slide"
+      overlayColor="transparent"
+      initialRouteName="ProfileDrawer"
+      drawerStyle={{width: '65%'}}
       drawerContentOptions={{
         activeTintColor: "#009688",
         inactiveTintColor: "gray",
