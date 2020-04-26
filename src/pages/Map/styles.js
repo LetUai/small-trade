@@ -4,6 +4,10 @@ export default StyleSheet.create({
   map: {
     flex: 1,
   },
+  me: {
+    color: "#009688",
+    textAlign: "center",
+  },
   marker: {
     width: 45,
     height: 45,

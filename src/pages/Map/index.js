@@ -59,7 +59,7 @@ export default function Map({ navigation }) {
         }}
       >
         <Icon name="map-pin" color="#009688" size={26} />
-        <Text>Eu</Text>
+        <Text style={styles.me}>Eu</Text>
       </Marker>
 
       {trades.map(trade => (
