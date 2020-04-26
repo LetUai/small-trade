@@ -76,7 +76,7 @@ export default function Map({ navigation }) {
           />
 
           <Callout onPress={() => {
-            navigation.navigate("Details", { publication: trade })
+            navigation.navigate("Details", { trade })
           }}>
             <View style={styles.callout}>
               <Text style={styles.name}>{trade.name}</Text>

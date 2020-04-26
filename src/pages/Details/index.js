@@ -9,16 +9,16 @@ import styles from './styles';
 
 export default function Details() {
   const route = useRoute();
-  const publication = route.params.publication;
+  const trade = route.params.trade;
 
   return (
     <View style={styles.container}>
       <Text style={styles.property}>Nome:</Text>
-      <Text>{publication.name}</Text>
+      <Text>{trade.name}</Text>
       <Text style={styles.property}>Descrição:</Text>
-      <Text>{publication.description}</Text>
+      <Text>{trade.description}</Text>
       <Text style={styles.property}>Contato:</Text>
-      <Text>{publication.phone}</Text>
+      <Text>{trade.phone}</Text>
     </View>
   );
 }

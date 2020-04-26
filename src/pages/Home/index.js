@@ -15,7 +15,7 @@ import styles from './styles';
 import api from '../../services/api';
 
 export default function Home({ navigation }) {
-  const [publications, setPublications] = useState();
+  const [trades, setTrades] = useState();
   const [search, setSearch] = useState('');
 
   const [loading, setLoading] = useState(false);
@@ -31,16 +31,16 @@ export default function Home({ navigation }) {
     return () => backHandler.remove();
   }, []);
 
-  async function loadPublications() {
+  async function loadTrades() {
     setLoading(false)
     const response = await api.get('commerce/list');
     
-    setPublications(response.data);
+    setTrades(response.data);
     setLoading(true);
   }
 
   useEffect(() => {
-    loadPublications();
+    loadTrades();
   }, [])
 
   return (
@@ -59,11 +59,11 @@ export default function Home({ navigation }) {
       
       <FlatList
         // condicional pra sempre ter componentes disponível pra aplicar o Shimmer Effect mesmo enquanto a requisição ainda está sendo feita:
-        data={loading ? publications : [{_id: "aa"}, {_id: "bb"}, {_id: "ab"}, {_id: "ba"}]}
-        keyExtractor={publication => String(publication._id)}
+        data={loading ? trades : [{_id: "aa"}, {_id: "bb"}, {_id: "ab"}, {_id: "ba"}]}
+        keyExtractor={trade => String(trade._id)}
         showsVerticalScrollIndicator={false}
-        renderItem={({ item: publication }) => (
-          <View style={styles.publication}>
+        renderItem={({ item: trade }) => (
+          <View style={styles.trade}>
 
             <View style={styles.profileContainer}>
               <ShimmerPlaceHolder
@@ -84,7 +84,7 @@ export default function Home({ navigation }) {
                 visible={loading}
               >
                 <View>
-                  <Text style={styles.companyName}>{publication.name}</Text>
+                  <Text style={styles.companyName}>{trade.name}</Text>
                   <Text style={styles.tags}>tags: tags, fixas, provisóriamente</Text>
                 </View>
               </ShimmerPlaceHolder>
@@ -95,7 +95,7 @@ export default function Home({ navigation }) {
               autoRun={true}
               visible={loading}
             >
-              <Text style={styles.description}>{publication.description}</Text>
+              <Text style={styles.description}>{trade.description}</Text>
             </ShimmerPlaceHolder>
             
             <ShimmerPlaceHolder
@@ -106,7 +106,7 @@ export default function Home({ navigation }) {
               <TouchableOpacity
                 style={styles.details}
                 onPress={() => {
-                  navigation.navigate('Details', { publication });
+                  navigation.navigate('Details', { trade });
                 }}
               >
                 <Text style={styles.detailsText}>Ver mais detalhes</Text>

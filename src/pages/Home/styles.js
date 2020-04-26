@@ -19,7 +19,7 @@ export default StyleSheet.create({
   searchIcon: {
     marginHorizontal: 8,
   },
-  publication: {
+  trade: {
     backgroundColor: "#FFF",
     padding: 12,
     marginVertical: 8,
