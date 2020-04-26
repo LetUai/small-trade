@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import Warning from './pages/Warning';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import Map from './pages/Map';
 import Profile from './pages/Profile';
 import Details from './pages/Details';
 
@@ -74,6 +75,14 @@ function Tabs() {
         component={Home}
         options={{
           tabBarIcon: ({color, size}) => <Icon name="home" color={color} size={size} />,
+        }}
+      />
+
+      <Tab.Screen
+        name="Map"
+        component={Map}
+        options={{
+          tabBarIcon: ({color, size}) => <Icon name="map" color={color} size={size} />,
         }}
       />
 
