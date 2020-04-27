@@ -14,7 +14,7 @@ export default function Details() {
   return (
     <View style={styles.container}>
       <Text style={styles.property}>Nome:</Text>
-      <Text>{trade.name}</Text>
+      <Text>{trade.commerceName}</Text>
       <Text style={styles.property}>Descrição:</Text>
       <Text>{trade.description}</Text>
       <Text style={styles.property}>Contato:</Text>

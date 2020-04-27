@@ -20,7 +20,7 @@ export default function Profile({ navigation }) {
 
   async function loadFavorites() {
     setLoading(false)
-    const response = await api.get('commerce/list');
+    const response = await api.get('auth/commerce/list');
     
     setFavorites(response.data);
     setLoading(true);
@@ -99,7 +99,7 @@ export default function Profile({ navigation }) {
                   visible={loading}
                 >
                   <View>
-                    <Text>{fav.name}</Text>
+                    <Text>{fav.commerceName}</Text>
                   </View>
                 </ShimmerPlaceHolder>
               </TouchableOpacity>

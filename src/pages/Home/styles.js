@@ -45,6 +45,7 @@ export default StyleSheet.create({
     fontSize: 13,
     fontStyle: "italic",
     color: "#999",
+    width: 250,
   },
   description: {
     lineHeight: 18,

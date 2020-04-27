@@ -33,7 +33,7 @@ export default function Home({ navigation }) {
 
   async function loadTrades() {
     setLoading(false)
-    const response = await api.get('commerce/list');
+    const response = await api.get('auth/commerce/list');
     
     setTrades(response.data);
     setLoading(true);
@@ -84,8 +84,8 @@ export default function Home({ navigation }) {
                 visible={loading}
               >
                 <View>
-                  <Text style={styles.companyName}>{trade.name}</Text>
-                  <Text style={styles.tags}>tags: tags, fixas, provisóriamente</Text>
+                  <Text style={styles.companyName}>{trade.commerceName}</Text>
+                  <Text style={styles.tags}>tags: {loading? trade.tags.join(', '): " "}</Text>
                 </View>
               </ShimmerPlaceHolder>
             </View>
