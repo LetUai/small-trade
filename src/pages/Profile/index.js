@@ -87,7 +87,7 @@ export default function Profile({ navigation }) {
               <TouchableOpacity
                 style={styles.itemContainer}
                 onPress={() => {
-                  navigation.navigate('Details', { publication: fav });
+                  navigation.navigate('Details', { trade: fav });
                 }}
               >
                 <ShimmerPlaceHolder
