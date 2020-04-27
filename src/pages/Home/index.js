@@ -63,7 +63,7 @@ export default function Home({ navigation }) {
         keyExtractor={trade => String(trade._id)}
         showsVerticalScrollIndicator={false}
         renderItem={({ item: trade }) => (
-          <View style={styles.trade}>
+          <View key={trade._id} style={styles.trade}>
 
             <View style={styles.profileContainer}>
               <ShimmerPlaceHolder
