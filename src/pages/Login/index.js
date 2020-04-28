@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   View,
@@ -7,11 +7,11 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import AuthContext from '../../contexts/auth';
+import { useAuth } from '../../contexts/auth';
 import styles from './styles';
 
 export default function Login({ navigation }) {
-  const { signIn } = useContext(AuthContext);
+  const { signIn } = useAuth();
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();

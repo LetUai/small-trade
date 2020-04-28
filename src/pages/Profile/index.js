@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -11,12 +11,12 @@ import ShimmerPlaceHolder from 'react-native-shimmer-placeholder'
 import Icon from '@expo/vector-icons/Feather';
 
 import api from '../../services/api';
-import AuthContext from '../../contexts/auth';
+import { useAuth } from '../../contexts/auth';
 
 import styles from './styles';
 
 export default function Profile({ navigation }) {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const [favorites, setFavorites] = useState();
   const [loading, setLoading] = useState(false);
 
@@ -30,7 +30,7 @@ export default function Profile({ navigation }) {
 
   useEffect(() => {
     loadFavorites();
-  }, [])
+  }, []);
 
   return (
     <View style={styles.container}>

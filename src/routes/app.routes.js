@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
@@ -15,7 +15,7 @@ import Map from '../pages/Map';
 import Profile from '../pages/Profile';
 import Details from '../pages/Details';
 
-import AuthContext from '../contexts/auth';
+import { useAuth } from '../contexts/auth';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -115,7 +115,7 @@ function Drawers() {
 
 function CustomDrawerContent(props) {
 
-  const { signOut } = useContext(AuthContext);
+  const { signOut } = useAuth();
 
   function handleSignOut() {
     signOut();

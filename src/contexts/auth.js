@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 import { AsyncStorage } from 'react-native'
 
 import api from '../services/api';
@@ -13,10 +13,10 @@ export function AuthProvider({ children }) {
     async function loadStorageData() {
       const storagedUser = await AsyncStorage.getItem('@STAuth:user');
 
-      if(storagedUser) {
+      if(storagedUser)
         setUser(JSON.parse(storagedUser));
-        setLoading(false);
-      }
+      
+      setLoading(false);
     }
 
     loadStorageData();
@@ -38,7 +38,8 @@ export function AuthProvider({ children }) {
     }
   }
 
-  function signOut() {
+  async function signOut() {
+    await AsyncStorage.removeItem('@STAuth:user');
     setUser(null)
   }
 
@@ -49,4 +50,8 @@ export function AuthProvider({ children }) {
   )
 }
 
-export default AuthContext;
+export function useAuth() {
+  const context = useContext(AuthContext);
+
+  return context;
+}

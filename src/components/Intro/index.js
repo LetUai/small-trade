@@ -1,21 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   Text,
-
 } from 'react-native';
 import Lottie from 'lottie-react-native';
 
 import shopping from '../../assets/shopping.json';
 import styles from './styles';
 
-export default function Intro({ navigation }) {
-  useEffect(() => {
-    setInterval(()=>{
-      navigation.navigate('Warning');
-    }, 5100);
-  }, []);
-
+export default function Intro() {
   return (
     <SafeAreaView style={styles.container}>
       <Lottie
