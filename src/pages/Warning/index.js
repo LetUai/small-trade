@@ -4,11 +4,11 @@ import {
   SafeAreaView,
   View,
   Text,
-  TouchableOpacity,
+  Alert,
   CheckBox,
   ScrollView,
   BackHandler,
-  ToastAndroid,
+  TouchableOpacity,
 } from 'react-native';
 
 import api from '../../services/api';
@@ -20,21 +20,19 @@ export default function Home({ navigation }) {
 
   const [selected, setSelected] = useState(false);
 
-  const toastMessage = (message) => {
-    ToastAndroid.showWithGravityAndOffset(
-      message,
-      ToastAndroid.SHORT,
-      ToastAndroid.BOTTOM,
-      25,
-      50
-    );
-  }
-
   BackHandler.addEventListener(
     "hardwareBackPress",
     () => {
 
-      toastMessage("Toque novamente para voltar");
+      Alert.alert(
+        'Tem certeza disso?',
+        'Se você voltar sua conta não será criada.',
+        [
+          {text: 'Voltar', onPress: () => navigation.navigate('Register')},
+          {text: 'Cancelar', onPress: () => {}, style: 'cancel'},
+        ],
+        { cancelable: false }
+      );
 
       return true;
     }

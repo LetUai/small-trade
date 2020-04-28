@@ -5,7 +5,6 @@ import {
   Image,
   FlatList,
   TextInput,
-  BackHandler,
   TouchableOpacity,
 } from 'react-native';
 import ShimmerPlaceHolder from 'react-native-shimmer-placeholder'
@@ -19,17 +18,6 @@ export default function Home({ navigation }) {
   const [search, setSearch] = useState('');
 
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const backAction = () => {
-      BackHandler.exitApp()
-    };
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      backAction
-    );
-    return () => backHandler.remove();
-  }, []);
 
   async function loadTrades() {
     setLoading(false)

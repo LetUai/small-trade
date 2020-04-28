@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView,
-  View,
   Text,
+  View,
+  Alert,
   TextInput,
-  TouchableOpacity,
   BackHandler,
-  ToastAndroid,
+  TouchableOpacity,
 } from 'react-native';
 
 import styles from './styles';
@@ -17,21 +17,20 @@ export default function Register({ navigation }) {
   const [password, setPassword] = useState();
   const [confirm, setConfirmPassword] = useState();
 
-  const toastMessage = (message) => {
-    ToastAndroid.showWithGravityAndOffset(
-      message,
-      ToastAndroid.SHORT,
-      ToastAndroid.BOTTOM,
-      25,
-      50
-    );
-  }
 
   BackHandler.addEventListener(
     "hardwareBackPress",
     () => {
 
-      toastMessage("Toque novamente para sair");
+      Alert.alert(
+        'Deseja sair do App?',
+        '',
+        [
+          {text: 'Sair', onPress: () => BackHandler.exitApp()},
+          {text: 'Cancelar', onPress: () => {}, style: 'cancel'},
+        ],
+        { cancelable: false }
+      );
 
       return true;
     }
