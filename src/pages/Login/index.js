@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import {
   SafeAreaView,
   View,
@@ -7,9 +7,23 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import AuthContext from '../../contexts/auth';
 import styles from './styles';
 
 export default function Login({ navigation }) {
+  const { signIn } = useContext(AuthContext);
+
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  function handleSingIn() {
+    if(!email || !password)
+      alert("Por favor preencha todos os campos")
+
+    else
+      signIn(email, password);
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Entre com seu email</Text>
@@ -21,6 +35,8 @@ export default function Login({ navigation }) {
           keyboardType="email-address"
           autoCapitalize="none"
           returnKeyType="next"
+          value={email}
+          onChangeText={setEmail}
         />
 
         <Text style={styles.label}>Senha:</Text>
@@ -28,6 +44,8 @@ export default function Login({ navigation }) {
           style={styles.input}
           secureTextEntry={true}
           returnKeyType="done"
+          value={password}
+          onChangeText={setPassword}
         />
       </View>
 
@@ -39,7 +57,7 @@ export default function Login({ navigation }) {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={()=> {navigation.navigate('Home')}}
+          onPress={handleSingIn}
         >
           <Text style={styles.textButton}>Entrar</Text>
         </TouchableOpacity>

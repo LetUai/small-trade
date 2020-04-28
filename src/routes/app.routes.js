@@ -1,50 +1,35 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import React, { useContext } from 'react';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from '@react-navigation/drawer';
 
 import Icon from '@expo/vector-icons/Feather';
 
-import Intro from './pages/Intro';
-import Home from './pages/Home';
-import Warning from './pages/Warning';
-import Register from './pages/Register';
-import Login from './pages/Login';
-import Map from './pages/Map';
-import Profile from './pages/Profile';
-import Details from './pages/Details';
+import Home from '../pages/Home';
+import Map from '../pages/Map';
+import Profile from '../pages/Profile';
+import Details from '../pages/Details';
+
+import AuthContext from '../contexts/auth';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
 
-export default function Routes() {
+export default function AppRoutes() {
   return (
-    <NavigationContainer>
       <Stack.Navigator 
-      initialRouteName="Register" // prop for development env
+      initialRouteName="Home"
       screenOptions={{
         headerShown: false,
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}>
-        <Stack.Screen name="Intro" component={Intro}/>
-        <Stack.Screen
-          name="Warning"
-          component={Warning}
-          options={{
-            cardStyleInterpolator: CardStyleInterpolators.forScaleFromCenterAndroid,
-          }}
-        />
-        <Stack.Screen name="Register" component={Register}/>
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{
-            headerShown: true,
-          }}
-        />
         <Stack.Screen name="Home" component={Tabs} />
         <Stack.Screen
           name="Details"
@@ -57,7 +42,6 @@ export default function Routes() {
           }}
         />
       </Stack.Navigator>
-    </NavigationContainer>
   );
 }
 
@@ -96,6 +80,7 @@ function Tabs() {
 function Drawers() {
   return(
     <Drawer.Navigator
+      drawerContent={props => <CustomDrawerContent {...props} />}
       drawerPosition="right"
       drawerType="slide"
       overlayColor="transparent"
@@ -126,4 +111,26 @@ function Drawers() {
       />
     </Drawer.Navigator>
   )
+}
+
+function CustomDrawerContent(props) {
+
+  const { signOut } = useContext(AuthContext);
+
+  function handleSignOut() {
+    signOut();
+  }
+
+  return (
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props} />
+      <DrawerItem
+        label="Sair"
+        icon={({color, size}) => (
+          <Icon name="log-out" color={color} size={size} />
+        )}
+        onPress={handleSignOut}
+      />
+    </DrawerContentScrollView>
+  );
 }

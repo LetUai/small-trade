@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   View,
   Text,
@@ -11,10 +11,12 @@ import ShimmerPlaceHolder from 'react-native-shimmer-placeholder'
 import Icon from '@expo/vector-icons/Feather';
 
 import api from '../../services/api';
+import AuthContext from '../../contexts/auth';
 
 import styles from './styles';
 
 export default function Profile({ navigation }) {
+  const { user } = useContext(AuthContext);
   const [favorites, setFavorites] = useState();
   const [loading, setLoading] = useState(false);
 
@@ -62,7 +64,7 @@ export default function Profile({ navigation }) {
             autoRun={true}
             visible={true}
           >
-              <Text style={styles.name}>Seu Nome</Text>
+              <Text style={styles.name}>{user.name}</Text>
           </ShimmerPlaceHolder>
         </View>
 

@@ -68,7 +68,7 @@ export default function Register({ navigation }) {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => { navigation.navigate('Home') }}
+          onPress={() => { navigation.navigate('Warning') }}
         >
           <Text style={styles.textButton}>Criar conta</Text>
         </TouchableOpacity>
