@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
+import { Alert } from 'react-native';
 import { AsyncStorage } from 'react-native'
 
 import api from '../services/api';
@@ -22,6 +23,10 @@ export function AuthProvider({ children }) {
     loadStorageData();
   })
 
+  function CustomAlert(message) {
+    Alert.alert("Atenção!", message);
+  }
+
   async function signIn(email, password) {
     try {
       const response = await api.post("auth/login", {email, password});
@@ -30,11 +35,19 @@ export function AuthProvider({ children }) {
         setUser(response.data[0]);
         await AsyncStorage.setItem('@STAuth:user', JSON.stringify(response.data[0]))
       }
-      else
-        alert("Email ou senha incorretos, tente novamente");
+      else {
+        if(response.data.status.code === 'auth/invalid-email') {
 
+          
+
+         CustomAlert("O formato de email informado não é válido, tente novamente");
+        } else if(response.data.status.code === 'auth/user-not-found' || response.data.status.code === 'auth/wrong-password') {
+          CustomAlert("Email ou senha incorretos, tente novamente");
+        }
+        console.log(response.data.status.code);
+      }
     } catch {
-      alert("Ocorreu um erro inesperado, tente novamente mais tarde");
+      CustomAlert("Ocorreu um erro inesperado, tente novamente mais tarde");
     }
   }
 

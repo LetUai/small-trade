@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useRoute } from '@react-navigation/native';
 import {
   SafeAreaView,
   View,
@@ -6,24 +7,56 @@ import {
   TouchableOpacity,
   CheckBox,
   ScrollView,
-  BackHandler
+  BackHandler,
+  ToastAndroid,
 } from 'react-native';
 
+import api from '../../services/api';
 import styles from './styles';
-export default function Home({ navigation }) {
 
-  useEffect(() => {
-    const backAction = () => {
-      BackHandler.exitApp()
-    };
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      backAction
-    );
-    return () => backHandler.remove();
-  }, []);
+export default function Home({ navigation }) {
+  const route = useRoute();
+  const { email, name, password } = route.params.user;
 
   const [selected, setSelected] = useState(false);
+
+  const toastMessage = (message) => {
+    ToastAndroid.showWithGravityAndOffset(
+      message,
+      ToastAndroid.SHORT,
+      ToastAndroid.BOTTOM,
+      25,
+      50
+    );
+  }
+
+  BackHandler.addEventListener(
+    "hardwareBackPress",
+    () => {
+
+      toastMessage("Toque novamente para voltar");
+
+      return true;
+    }
+  );
+
+  async function handleRegister() {
+    try {
+      const response = await api.post("auth/register", {email, password, name});
+      
+      if(response.data.status == 'Error') {
+        alert('Ocorreu um erro ao criar sua conta, confira os dados informados e tente novamente.');
+        navigation.navigate('Register');
+      }
+      else if(response.data.status == 'Sucess') {
+        toastMessage("Conta criada com sucesso, faça login pra continuar")
+        navigation.navigate('Login');
+      }
+    } catch {
+      alert("Ocorreu um erro inesperado, tente novamente mais tarde");
+    }
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}> Termos e condições </Text>
@@ -61,9 +94,7 @@ export default function Home({ navigation }) {
           ?
           <TouchableOpacity
             style={styles.button}
-            onPress={() => {
-              navigation.navigate('Login');
-            }}
+            onPress={handleRegister}
           >
             <Text style={styles.textButton}>Continuar</Text>
           </TouchableOpacity>

@@ -5,6 +5,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  BackHandler,
 } from 'react-native';
 
 import { useAuth } from '../../contexts/auth';
@@ -16,6 +17,14 @@ export default function Login({ navigation }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
+  BackHandler.addEventListener(
+    "hardwareBackPress",
+    () => {
+      navigation.navigate('Register');
+      return true;
+    }
+  );
+
   function handleSingIn() {
     if(!email || !password)
       alert("Por favor preencha todos os campos")
@@ -23,6 +32,24 @@ export default function Login({ navigation }) {
     else
       signIn(email, password);
   }
+
+  const buttonEnabled = () => (
+    <TouchableOpacity
+      style={styles.button}
+      onPress={handleSingIn}
+    >
+      <Text style={styles.textButton}>Entrar</Text>
+    </TouchableOpacity>
+  );
+
+  const buttonDisabled = () => (
+    <TouchableOpacity
+      style={[styles.button, { backgroundColor: "#00968899" }]}
+      onPress={()=>{}}
+    >
+      <Text style={styles.textButton}>Entrar</Text>
+    </TouchableOpacity>
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -52,15 +79,13 @@ export default function Login({ navigation }) {
       <View style={styles.footer}>
         <Text
           style={styles.link}
-          onPress={() => navigation.goBack()}
+          onPress={() => navigation.navigate('Register')}
         >Ainda não tenho uma conta</Text>
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={handleSingIn}
-        >
-          <Text style={styles.textButton}>Entrar</Text>
-        </TouchableOpacity>
+        {(email && password)
+          ? buttonEnabled() : buttonDisabled()
+        }
+
       </View>
     </SafeAreaView>
   );
